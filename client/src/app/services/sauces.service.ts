@@ -4,6 +4,8 @@ import { Sauce } from '../models/Sauce.model';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 
+// http://localhost:8009
+// https://piquante.nmamou.com
 @Injectable({
   providedIn: 'root'
 })

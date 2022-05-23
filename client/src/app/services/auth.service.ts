@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, tap } from 'rxjs';
 import { Router } from '@angular/router';
 
+// https://piquante.nmamou.com
+// http://localhost:8009
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +18,6 @@ export class AuthService {
               private router: Router) {}
 
   createUser(email: string, password: string) {
-    // return this.http.post<{ message: string }>('https://piquante.nmamou.com/api/auth/signup', {email: email, password: password});
     return this.http.post<{ message: string }>('https://piquante.nmamou.com/api/auth/signup', {email: email, password: password});
   }
 
@@ -29,7 +30,6 @@ export class AuthService {
   }
 
   loginUser(email: string, password: string) {
-    // return this.http.post<{ userId: string, token: string }>('https://www.piquante.nmamou.com/api/auth/login', {email: email, password: password}).pipe(
       return this.http.post<{ userId: string, token: string }>('https://piquante.nmamou.com/api/auth/login', {email: email, password: password}).pipe(
       tap(({ userId, token }) => {
         this.userId = userId;
