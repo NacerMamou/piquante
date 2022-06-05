@@ -33,6 +33,20 @@ function updateSauce(req, res, next) {
       )
       .catch((error) => res.status(400).json({ error }));
   } else {
+    //find the sauce and get its imageUrl
+    // delete "http://localhost:8009/" from it
+    // use it to unlink the image from images folder using fs.unlink
+    Sauce.findOne({ _id: req.params.id })
+      .then((sauce) => {
+        const lastImgUrl = sauce.imageUrl.replace("http://localhost:8009/", "");
+        fs.unlink(lastImgUrl, (err) => {
+          return console.log(err);
+          console.log(`deleted image: ${lastImgUrl}`);
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     Sauce.updateOne(
       { _id: req.params.id },
       {
